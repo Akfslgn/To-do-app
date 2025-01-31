@@ -1,25 +1,36 @@
-import { useEffect, useState } from "react";
-import { IoMdSunny, IoIosMoon } from "react-icons/io";
+import React, { useState, useEffect } from "react";
 
-function ThemeToggler() {
-  const [theme, setTheme] = useState("light");
-
-  const themeToggler = () => {
-    setTheme((prev) => (prev === "light" ? "dark" : "light"));
-  };
+const ThemeToggler = () => {
+  const [isDarkMode, setIsDarkMode] = useState(false);
 
   useEffect(() => {
-    document.documentElement.setAttribute("data-bs-theme", theme);
-  }, [theme]);
+    document.documentElement.setAttribute(
+      "data-bs-theme",
+      isDarkMode ? "dark" : "light"
+    );
+  }, [isDarkMode]);
+
+  const toggleTheme = () => {
+    setIsDarkMode((prevMode) => !prevMode);
+  };
 
   return (
-    <button
-      onClick={themeToggler}
-      className={`btn ${theme === "light" ? "text-warning" : "text-primary"}`}
-    >
-      {theme === "light" ? <IoMdSunny /> : <IoIosMoon />}
-    </button>
+    <div className="form-check form-switch">
+      <input
+        className="form-check-input"
+        type="checkbox"
+        id="flexSwitchCheckDefault"
+        checked={isDarkMode}
+        onChange={toggleTheme}
+      />
+      <label
+        className="form-check-label text-muted"
+        htmlFor="flexSwitchCheckDefault"
+      >
+        {isDarkMode ? "Dark Mode" : "Light Mode"}
+      </label>
+    </div>
   );
-}
+};
 
 export default ThemeToggler;

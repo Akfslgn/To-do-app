@@ -56,8 +56,8 @@ function App() {
 
   return (
     <div className="App">
-      <div className="text-end">
-        <ThemeToggler className="theme-toggler " />
+      <div className="text-end position-absolute me-1 top-0 end-0">
+        <ThemeToggler className="theme-toggler" />
       </div>
       <div className="container col-lg-6 col-md-8 col-10 mt-5 max-width">
         <TaskForm addTask={addTask} />
