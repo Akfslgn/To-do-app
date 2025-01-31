@@ -10,6 +10,16 @@ const ThemeToggler = () => {
     );
   }, [isDarkMode]);
 
+  useEffect(() => {
+    const hour = new Date().getHours();
+    const darkMode = hour >= 18 || hour < 6;
+    setIsDarkMode(darkMode);
+    document.documentElement.setAttribute(
+      "data-bs-theme",
+      darkMode ? "dark" : "light"
+    );
+  }, []);
+
   const toggleTheme = () => {
     setIsDarkMode((prevMode) => !prevMode);
   };

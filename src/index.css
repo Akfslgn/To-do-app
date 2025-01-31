@@ -66,5 +66,7 @@ html[data-bs-theme="light"] {
   max-width: 900px;
 }
 
-#task-form {
+#flexSwitchCheckDefault,
+.form-check-label {
+  cursor: pointer;
 }

@@ -30,6 +30,10 @@ function App() {
     setTasks(updatedTasks);
   };
 
+  const chooseAllTasks = () => {
+    setFilter("all");
+  };
+
   const clearCompleted = () => {
     const uncompletedTasks = tasks.filter((task) => !task.completed);
     setTasks(uncompletedTasks);
@@ -71,6 +75,7 @@ function App() {
         showActiveTasks={showActiveTasks}
         showCompletedTasks={showCompletedTasks}
         filter={filter}
+        chooseAllTasks={chooseAllTasks}
       />
     </div>
   );
