@@ -56,11 +56,11 @@ html[data-bs-theme="light"] {
   font-weight: bold;
   border: none;
 }
-/* .form-control:focus {
+.form-control:focus {
   outline: none !important;
   box-shadow: none !important;
   border-color: initial !important;
-} */
+}
 
 .max-width {
   max-width: 900px;
