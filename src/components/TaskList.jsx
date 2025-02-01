@@ -1,6 +1,5 @@
 import TaskCard from "./TaskCard";
 import TaskFooter from "./TaskFooter";
-
 function TaskList({
   tasks,
   deleteTask,
@@ -12,7 +11,7 @@ function TaskList({
   filter,
 }) {
   return tasks.length < 1 ? (
-    <div className="container col-lg-6 col-md-8 col-10 max-width">
+    <div className="max-width">
       <div className="text-center mt-1  bg-body shadow text-secondary">
         No Tasks Available
       </div>
@@ -28,7 +27,7 @@ function TaskList({
       </div>
     </div>
   ) : (
-    <div className="">
+    <div className="mt-1 max-width">
       {tasks.map((task) => (
         <TaskCard
           key={task.id}
@@ -51,5 +50,4 @@ function TaskList({
     </div>
   );
 }
-
 export default TaskList;

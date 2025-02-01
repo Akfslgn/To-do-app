@@ -30,10 +30,6 @@ function App() {
     setTasks(updatedTasks);
   };
 
-  const chooseAllTasks = () => {
-    setFilter("all");
-  };
-
   const clearCompleted = () => {
     const uncompletedTasks = tasks.filter((task) => !task.completed);
     setTasks(uncompletedTasks);
@@ -59,26 +55,23 @@ function App() {
   });
 
   return (
-    <div className="App">
+    <div className="container col-lg-6 col-md-8 col-12">
       <div className="text-end position-absolute me-1 top-0 end-0">
         <ThemeToggler className="theme-toggler" />
       </div>
-      <div className="container col-lg-6 col-md-8 col-sm-10 mt-5 max-width">
+      <div className="mt-5 max-width">
         <TaskForm addTask={addTask} />
       </div>
-      <div className=" container col-lg-6 col-md-8 col-sm-10 mt-1 max-width">
-        <TaskList
-          tasks={filteredTasks}
-          deleteTask={deleteTask}
-          toggleTaskCompletion={toggleTaskCompletion}
-          clearCompleted={clearCompleted}
-          showAllTasks={showAllTasks}
-          showActiveTasks={showActiveTasks}
-          showCompletedTasks={showCompletedTasks}
-          filter={filter}
-          chooseAllTasks={chooseAllTasks}
-        />
-      </div>
+      <TaskList
+        tasks={filteredTasks}
+        deleteTask={deleteTask}
+        toggleTaskCompletion={toggleTaskCompletion}
+        clearCompleted={clearCompleted}
+        showAllTasks={showAllTasks}
+        showActiveTasks={showActiveTasks}
+        showCompletedTasks={showCompletedTasks}
+        filter={filter}
+      />
     </div>
   );
 }
