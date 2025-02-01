@@ -31,9 +31,9 @@ function TaskForm({ addTask }) {
   return (
     <div className="max-width">
       <h2 className="text-center fw-bold opacity-75">To Do List</h2>
-      <form
-        id="task-form"
-        className="z-1 form-control m-0  rounded-0 border-0 d-flex justify-content-between shadow max-width"
+      <div
+        id="task-form "
+        className="form-control m-0  rounded-0 border-0 d-flex justify-content-between shadow max-width"
         onSubmit={handleSubmit}
       >
         <input
@@ -58,7 +58,7 @@ function TaskForm({ addTask }) {
         >
           <MdOutlineAdd />
         </button>
-      </form>
+      </div>
     </div>
   );
 }

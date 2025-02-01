@@ -28,7 +28,7 @@ function TaskList({
       </div>
     </div>
   ) : (
-    <div className="container col-lg-6 col-md-8 col-10 mt-1 max-width">
+    <div className="">
       {tasks.map((task) => (
         <TaskCard
           key={task.id}
