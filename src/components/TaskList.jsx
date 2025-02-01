@@ -11,7 +11,7 @@ function TaskList({
   filter,
 }) {
   return tasks.length < 1 ? (
-    <div className="max-width">
+    <div className="">
       <div className="text-center mt-1  bg-body shadow text-secondary">
         No Tasks Available
       </div>
@@ -27,7 +27,7 @@ function TaskList({
       </div>
     </div>
   ) : (
-    <div className="mt-1 max-width">
+    <div className="mt-1 ">
       {tasks.map((task) => (
         <TaskCard
           key={task.id}

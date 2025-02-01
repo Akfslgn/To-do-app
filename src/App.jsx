@@ -55,23 +55,25 @@ function App() {
   });
 
   return (
-    <div className="container col-lg-6 col-md-8 col-12">
-      <div className="text-end position-absolute me-1 top-0 end-0">
+    <div className="container max-width col-lg-6 col-md-8 col-sm-12 ">
+      <div className="position-absolute me-1 top-0 end-0">
         <ThemeToggler className="theme-toggler" />
       </div>
-      <div className="mt-5 max-width">
+      <div className="mt-5">
         <TaskForm addTask={addTask} />
       </div>
-      <TaskList
-        tasks={filteredTasks}
-        deleteTask={deleteTask}
-        toggleTaskCompletion={toggleTaskCompletion}
-        clearCompleted={clearCompleted}
-        showAllTasks={showAllTasks}
-        showActiveTasks={showActiveTasks}
-        showCompletedTasks={showCompletedTasks}
-        filter={filter}
-      />
+      <div>
+        <TaskList
+          tasks={filteredTasks}
+          deleteTask={deleteTask}
+          toggleTaskCompletion={toggleTaskCompletion}
+          clearCompleted={clearCompleted}
+          showAllTasks={showAllTasks}
+          showActiveTasks={showActiveTasks}
+          showCompletedTasks={showCompletedTasks}
+          filter={filter}
+        />
+      </div>
     </div>
   );
 }

@@ -37,9 +37,6 @@ html[data-bs-theme="light"] {
 :placeholder-shown {
   opacity: 50%;
 }
-#add-btn {
-  opacity: 50%;
-}
 
 #task-checkbox {
   cursor: pointer;

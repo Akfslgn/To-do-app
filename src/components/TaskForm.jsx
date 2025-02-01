@@ -23,11 +23,11 @@ function TaskForm({ addTask, toggleTaskCompletion }) {
     setValidTask(false);
   };
   return (
-    <div className="max-width">
+    <div className="">
       <h2 className="text-center fw-bold opacity-75">To Do List</h2>
       <form
         id="task-form"
-        className="form-control m-0 rounded-0 border-0 d-flex justify-content-between shadow max-width"
+        className="form-control m-0 rounded-0 border-0 d-flex justify-content-between shadow "
         onSubmit={handleSubmit}
       >
         <input
@@ -49,7 +49,7 @@ function TaskForm({ addTask, toggleTaskCompletion }) {
         <button
           type="submit"
           id="add-btn"
-          className="btn pe-2 ms-2 fs-2"
+          className="btn pe-2 ms-2 fs-2 opacity-50"
           disabled={!validTask}
         >
           <MdOutlineAdd />
