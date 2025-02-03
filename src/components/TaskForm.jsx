@@ -23,7 +23,7 @@ function TaskForm({ addTask, toggleTaskCompletion }) {
     setValidTask(false);
   };
   return (
-    <div className="">
+    <div>
       <h2 className="text-center fw-bold opacity-75">To Do List</h2>
       <form
         id="task-form"

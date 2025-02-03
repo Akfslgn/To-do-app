@@ -55,7 +55,7 @@ function App() {
   });
 
   return (
-    <div className="container max-width col-lg-6 col-md-8 col-sm-12 ">
+    <div className="container max-width col-lg-8 col-md-9 col-sm-11 ">
       <div className="position-absolute me-1 top-0 end-0">
         <ThemeToggler className="theme-toggler" />
       </div>
