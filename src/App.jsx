@@ -3,36 +3,43 @@ import { useState, useEffect } from "react";
 import TaskList from "./components/TaskList.jsx";
 import ThemeToggler from "../src/ThemeToggler.jsx";
 function App() {
-  const [tasks, setTasks] = useState(() => {
-    const savedTasks = localStorage.getItem("tasks");
-    return savedTasks ? JSON.parse(savedTasks) : [];
-  });
+  const [tasks, setTasks] = useState([]);
+  const USER_ID = import.meta.env.VITE_USER_ID;
+
+  const fetchTasks = async () => {
+    try {
+      const response = await fetch("/api/todos?user_id=" + USER_ID);
+      const data = await response.json();
+      console.log("data fetched", data);
+      setTasks(Array.isArray(data) ? data : []);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    fetchTasks();
+  }, []);
 
   const [filter, setFilter] = useState("all");
 
-  useEffect(() => {
-    localStorage.setItem("tasks", JSON.stringify(tasks));
-  }, [tasks]);
+  const handleClearCompleted = async () => {
+    try {
+      const completedTasks = tasks.filter((task) => task.completed);
 
-  const addTask = (newTask) => {
-    setTasks([...tasks, { ...newTask, createdDate: Date.now() }]);
-  };
+      await Promise.all(
+        completedTasks.map((task) =>
+          fetch(`/api/todos/${task.id}?user_id=${USER_ID}`, {
+            method: "DELETE",
+          })
+        )
+      );
 
-  const deleteTask = (id) => {
-    const filteredTasks = tasks.filter((task) => task.id !== id);
-    setTasks(filteredTasks);
-  };
-
-  const toggleTaskCompletion = (id) => {
-    const updatedTasks = tasks.map((task) =>
-      task.id === id ? { ...task, completed: !task.completed } : task
-    );
-    setTasks(updatedTasks);
-  };
-
-  const clearCompleted = () => {
-    const uncompletedTasks = tasks.filter((task) => !task.completed);
-    setTasks(uncompletedTasks);
+      console.log("Completed tasks cleared");
+      fetchTasks();
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   const showAllTasks = () => {
@@ -60,14 +67,13 @@ function App() {
         <ThemeToggler className="theme-toggler" />
       </div>
       <div className="mt-5">
-        <TaskForm addTask={addTask} />
+        <TaskForm fetchTasks={fetchTasks} />
       </div>
       <div>
         <TaskList
           tasks={filteredTasks}
-          deleteTask={deleteTask}
-          toggleTaskCompletion={toggleTaskCompletion}
-          clearCompleted={clearCompleted}
+          fetchTasks={fetchTasks}
+          handleClearCompleted={handleClearCompleted}
           showAllTasks={showAllTasks}
           showActiveTasks={showActiveTasks}
           showCompletedTasks={showCompletedTasks}

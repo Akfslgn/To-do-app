@@ -4,7 +4,9 @@ function TaskFooter({
   showAllTasks,
   showActiveTasks,
   showCompletedTasks,
-  clearCompleted,
+  handleClearCompleted,
+
+  // clearCompleted,
   filter,
 }) {
   return (
@@ -44,7 +46,7 @@ function TaskFooter({
           type="button"
           id="clear-completed"
           className="btn btn-sm"
-          onClick={clearCompleted}
+          onClick={handleClearCompleted}
         >
           Clear Completed
         </button>

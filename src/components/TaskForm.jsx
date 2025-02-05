@@ -1,27 +1,48 @@
 import { MdOutlineAdd } from "react-icons/md";
 import React, { useState } from "react";
 import { isValidTask } from "../utils";
-function TaskForm({ addTask, toggleTaskCompletion }) {
+function TaskForm({ fetchTasks, toggleTaskCompletion }) {
   const [task, setTask] = useState("");
   const [validTask, setValidTask] = useState("");
+  const USER_ID = import.meta.env.VITE_USER_ID;
   const handleTaskInput = (e) => {
     const value = e.target.value;
     setTask(value);
     setValidTask(isValidTask(value));
   };
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     if (!validTask) {
       return;
     }
-    const newTask = {
-      id: Date.now(),
-      task: task,
+    const taskData = {
+      user_id: USER_ID,
+      title: task,
+      created_at: Date.now(),
+      id: task.id,
+      completed: false,
     };
-    addTask(newTask);
+
+    try {
+      const response = await fetch("/api/todos", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(taskData),
+      });
+      if (!response.ok) {
+        throw new Error("Failed to add task" + response.status);
+      }
+      fetchTasks();
+    } catch (error) {
+      console.error("Error adding task:", error);
+    }
+
     setTask("");
     setValidTask(false);
   };
+
   return (
     <div>
       <h2 className="text-center fw-bold opacity-75">To Do List</h2>
@@ -43,7 +64,7 @@ function TaskForm({ addTask, toggleTaskCompletion }) {
           value={task}
           id="task-input"
           className={
-            "form-control border-0 mt-1 text-start ${validTask ? `` : `is-invalid`}"
+            "form-control border-0 mt-1 text-start fs-5 ${validTask ? `` : `is-invalid`}"
           }
         />
         <button

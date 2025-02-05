@@ -2,9 +2,9 @@ import TaskCard from "./TaskCard";
 import TaskFooter from "./TaskFooter";
 function TaskList({
   tasks,
-  deleteTask,
-  toggleTaskCompletion,
-  clearCompleted,
+  fetchTasks,
+  handleToggleCompletion,
+  handleClearCompleted,
   showAllTasks,
   showActiveTasks,
   showCompletedTasks,
@@ -18,7 +18,7 @@ function TaskList({
       <div className="bg-body card-footer rounded-0 shadow border border-1">
         <TaskFooter
           allTasks={tasks.length}
-          clearCompleted={clearCompleted}
+          handleClearCompleted={handleClearCompleted}
           showAllTasks={showAllTasks}
           showActiveTasks={showActiveTasks}
           showCompletedTasks={showCompletedTasks}
@@ -32,19 +32,18 @@ function TaskList({
         <TaskCard
           key={task.id}
           task={task}
-          deleteTask={deleteTask}
-          toggleTaskCompletion={toggleTaskCompletion}
-          createdDate={task.createdDate}
+          fetchTasks={fetchTasks}
+          handleToggleCompletion={handleToggleCompletion}
         />
       ))}
       <div className="bg-body card-footer rounded-0 shadow border border-1">
         <TaskFooter
           allTasks={tasks.length}
-          clearCompleted={clearCompleted}
           showAllTasks={showAllTasks}
           showActiveTasks={showActiveTasks}
           showCompletedTasks={showCompletedTasks}
           filter={filter}
+          handleClearCompleted={handleClearCompleted}
         />
       </div>
     </div>
