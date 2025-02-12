@@ -10,21 +10,9 @@ function TaskList({
   showCompletedTasks,
   filter,
 }) {
-  return tasks.length < 1 ? (
-    <div className="">
-      <div className="text-center mt-1  bg-body shadow text-secondary">
-        No Tasks Available
-      </div>
-      <div className="bg-body card-footer rounded-0 shadow border border-1">
-        <TaskFooter
-          allTasks={tasks.length}
-          clearCompleted={clearCompleted}
-          showAllTasks={showAllTasks}
-          showActiveTasks={showActiveTasks}
-          showCompletedTasks={showCompletedTasks}
-          filter={filter}
-        />
-      </div>
+  return tasks < 1 && filter === "all" ? (
+    <div className="text-center mt-1  bg-body shadow text-secondary">
+      No Tasks Available
     </div>
   ) : (
     <div className="mt-1 ">

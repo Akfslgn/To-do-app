@@ -1,7 +1,7 @@
 import { MdOutlineAdd } from "react-icons/md";
-import React, { useState } from "react";
+import { useState } from "react";
 import { isValidTask } from "../utils";
-function TaskForm({ addTask, toggleTaskCompletion }) {
+function TaskForm({ addTask, toggleTaskCompletionAll }) {
   const [task, setTask] = useState("");
   const [validTask, setValidTask] = useState("");
   const handleTaskInput = (e) => {
@@ -31,8 +31,7 @@ function TaskForm({ addTask, toggleTaskCompletion }) {
         onSubmit={handleSubmit}
       >
         <input
-          onChange={() => toggleTaskCompletion(task.id)}
-          onClick={toggleTaskCompletion}
+          onChange={() => toggleTaskCompletionAll(task.id)}
           id="task-checkbox"
           type="checkbox"
           className="form-check-input align-self-center me-2 ms-1 fs-5 rounded-5"

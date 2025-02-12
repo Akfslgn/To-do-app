@@ -30,6 +30,16 @@ function App() {
     setTasks(updatedTasks);
   };
 
+  const toggleTaskCompletionAll = () => {
+    const allCompleted = tasks.every((task) => task.completed);
+    const updatedTasks = tasks.map((task) => ({
+      ...task,
+      completed: !allCompleted,
+    }));
+
+    setTasks(updatedTasks);
+  };
+
   const clearCompleted = () => {
     const uncompletedTasks = tasks.filter((task) => !task.completed);
     setTasks(uncompletedTasks);
@@ -60,7 +70,10 @@ function App() {
         <ThemeToggler className="theme-toggler" />
       </div>
       <div className="mt-5">
-        <TaskForm addTask={addTask} />
+        <TaskForm
+          addTask={addTask}
+          toggleTaskCompletionAll={toggleTaskCompletionAll}
+        />
       </div>
       <div>
         <TaskList
